@@ -50,12 +50,15 @@
   <div id="app">
     
       
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
     <main class="content on">
       
 <section class="cover">
     
       
-      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
+      <a class="forkMe" href="https://github.com/sharkeagle"
         target="_blank"><img width="149" height="149" src="/images/forkme.png"
           class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
     
@@ -90,7 +93,7 @@
   <script>
     try {
       var typed = new Typed("#subtitle", {
-        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+        strings: ['面朝大海，春暖花开', '雄关漫道真如铁，而今迈步从头越', '想要的都拥有，得不到的都释怀'],
         startDelay: 0,
         typeSpeed: 200,
         loop: true,
@@ -173,7 +176,7 @@
   <table>
 <thead>
 <tr>
-<th align="center"><p><h1>朱朝辉</h1></p><p><img src="/img/%E6%9C%B1%E6%9C%9D%E8%BE%89.001.jpg"></p><p></p><p>zch_<a href="mailto:&#x35;&#x35;&#53;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#x6d;">&#x35;&#x35;&#53;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#x6d;</a></p><p></p><p><h3></h3></p></th>
+<th align="center"><p><h1>朱朝辉</h1></p><p><img src="/img/%E6%9C%B1%E6%9C%9D%E8%BE%89.001.jpg"></p><p></p><p>zch_<a href="mailto:&#x35;&#53;&#53;&#x40;&#x71;&#113;&#x2e;&#x63;&#111;&#109;">&#x35;&#53;&#53;&#x40;&#x71;&#113;&#x2e;&#x63;&#111;&#109;</a></p><p></p><p><h3></h3></p></th>
 <th align="center"></th>
 </tr>
 </thead>
@@ -222,7 +225,8 @@
     </footer>
   </div>
 
-   
+    
+ 
    
   
 </article>
@@ -259,7 +263,8 @@
     </footer>
   </div>
 
-   
+    
+ 
    
   
 </article>
@@ -549,7 +554,9 @@
 <!-- ClickBoom1 -->
 
 <!-- ClickBoom2 -->
-
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
 <!-- CodeCopy -->
  
 <link rel="stylesheet" href="/css/clipboard.css">
@@ -619,6 +626,42 @@
 
     
     
+<script>
+  const password = "123456";
+  const lock_password = window.sessionStorage.getItem("lock_password");
+  console.log(password, lock_password);
+  if (lock_password !== password) {
+    Swal.fire({
+      title: "Please enter password",
+      input: "text",
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: false,
+      showLoaderOnConfirm: true,
+      allowOutsideClick: false,
+      confirmButtonText: "Ok",
+    }).then((result) => {
+      console.log(result);
+      if (result.isConfirmed) {
+        console.log(password);
+        if (result.value === password) {
+          window.sessionStorage.setItem("lock_password", result.value);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Incorrect password, please try again",
+            confirmButtonText: "Ok",
+            allowOutsideClick: false,
+          }).then(() => {
+            window.location.reload();
+          });
+        }
+      }
+    });
+  }
+</script>
+
 
   </div>
 </body>
